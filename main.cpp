@@ -43,7 +43,7 @@ int main(int argc, char* argv[])
 
     for (int i = 0; i < 100; i++)
     {
-        SDL_Texture* texture = game.LoadTexture("C:\\Users\\galax\\Desktop\\silly pictures\\bup.jpg");
+        SDL_Texture* texture = game.LoadTexture("res/img/bup.jpg");
         game.AddEntity((float) i, (float) i, texture);
     }
 
