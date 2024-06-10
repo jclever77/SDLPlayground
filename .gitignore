@@ -30,3 +30,7 @@
 *.exe
 *.out
 *.app
+
+# Misc. folders in repo
+.vscode/
+build/
