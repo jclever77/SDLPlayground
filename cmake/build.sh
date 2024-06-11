@@ -1,5 +1,2 @@
-cd build
-# cmake -DCMAKE_BUILD_TYPE=Debug ../cmake
-cmake ../cmake
-ninja
-cd ..
+cmake -B build/release cmake
+ninja -C build/release
