@@ -18,8 +18,8 @@ public:
     void stopGame();
 
 private:
+    std::vector<Entity> _entities;
     SDL_Window* _window;
     SDL_Renderer* _renderer;
     bool _isRunning;
-    std::vector<Entity> _entities;
 };

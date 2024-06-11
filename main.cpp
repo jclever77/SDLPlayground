@@ -41,7 +41,7 @@ int main(int argc, char* argv[])
         SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC    
     );
 
-    SDL_Texture* texture = game.LoadTexture("res/img/bup.jpg");
+    SDL_Texture* texture = game.LoadTexture("assets/img/bup.jpg");
     int w = SCREEN_WIDTH / 10;
     int h = SCREEN_HEIGHT / 10;
     for (int row = 0; row < 10; row++)
