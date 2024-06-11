@@ -62,6 +62,37 @@ int main(int argc, char* argv[])
                 case SDL_QUIT:
                     game.stopGame();
                     break;
+
+                case SDL_MOUSEBUTTONDOWN:
+                    switch (event.button.button)
+                    {
+                        case SDL_BUTTON_LEFT:
+                            std::cout << "Left-mouse click" << std::endl;
+                            break;
+                        case SDL_BUTTON_RIGHT:
+                            std::cout << "Right-mouse click" << std::endl;
+                            break;
+                        case SDL_BUTTON_MIDDLE:
+                            std::cout << "Middle-mouse click" << std::endl;
+                            break;
+                    }
+
+                case SDL_KEYDOWN:
+                    switch (event.key.keysym.sym)
+                    {
+                        case SDLK_w:
+                            std::cout << "wuh" << std::endl;
+                            break;
+                        case SDLK_a:
+                            std::cout << "auh" << std::endl;
+                            break;
+                        case SDLK_s:
+                            std::cout << "suh" << std::endl;
+                            break;
+                        case SDLK_d:
+                            std::cout << "duh" << std::endl;
+                            break;
+                    }
             }
         }
 
