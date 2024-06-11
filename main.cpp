@@ -41,12 +41,17 @@ int main(int argc, char* argv[])
         SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC    
     );
 
-    for (int i = 0; i < 100; i++)
+    SDL_Texture* texture = game.LoadTexture("res/img/bup.jpg");
+    int w = SCREEN_WIDTH / 10;
+    int h = SCREEN_HEIGHT / 10;
+    for (int row = 0; row < 10; row++)
     {
-        SDL_Texture* texture = game.LoadTexture("res/img/bup.jpg");
-        game.AddEntity((float) i, (float) i, texture);
+        for (int col = 0; col < 10; col++)
+        {
+            game.AddEntity(col * w, row * h, texture);
+        }
     }
-
+    
     SDL_Event event;
     while (game.IsRunning())
     {

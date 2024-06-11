@@ -72,8 +72,8 @@ void Game::RenderAll()
         SDL_Rect dest = {
             (int) entity.GetPosition().x,
             (int) entity.GetPosition().y,
-            source.w,
-            source.h
+            source.w / 10,
+            source.h / 10
         };
 
         SDL_RenderCopy(_renderer, entity.GetTexture(), &source, &dest);
