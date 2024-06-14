@@ -24,11 +24,17 @@ void Entity::Render(SDL_Renderer* renderer)
 
 void Entity::Update(const Uint8* keystate)
 {
-    if (keystate[SDL_SCANCODE_W]) { _position += { 0.0f, -5.0f }; }
-    if (keystate[SDL_SCANCODE_A]) { _position += { -5.0f, 0.0f }; }
-    if (keystate[SDL_SCANCODE_S]) { _position += { 0.0f, 5.0f }; }
-    if (keystate[SDL_SCANCODE_D]) { _position += { 5.0f, 0.0f }; }
+    if (keystate[SDL_SCANCODE_A]) { _velocity.x = -5.0f; }
+    if (keystate[SDL_SCANCODE_D]) { _velocity.x = 5.0f; }
+    if (!keystate[SDL_SCANCODE_A] && !keystate[SDL_SCANCODE_D]) { _velocity.x = 0.0f; }
+    if (_grounded && keystate[SDL_SCANCODE_SPACE])
+    {
+        _velocity += { 0.0f, -40.0f };
+        _grounded = false;
+    }
 
+    _velocity += _gravity;
+    _position += _velocity;
     CheckBounds();
 }
 
@@ -53,6 +59,8 @@ void Entity::CheckBounds()
     else if (_position.y + h > 450.0f)
     {
         _position.y = 450.0f - h;
+        _velocity.y = 0.0f;
+        _grounded = true;
     }
 }
 

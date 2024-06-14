@@ -2,6 +2,7 @@
 
 # include <SDL2/SDL.h>
 # include <SDL2/SDL_image.h>
+# include <algorithm>
 # include <math.hpp>
 
 class Entity
@@ -18,6 +19,9 @@ public:
 
 private:
     Vector2f _position;
+    Vector2f _velocity;
+    Vector2f _gravity = { 0.0f, 3.0f };
     SDL_Rect _sourceFrame;
     SDL_Texture* _texture;
+    bool _grounded;
 };
