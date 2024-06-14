@@ -1,4 +1,4 @@
-# include <Game.hpp>
+# include <game.hpp>
 
 Game::Game(const char title[], int w, int h, Uint32 renderFlags)
 {

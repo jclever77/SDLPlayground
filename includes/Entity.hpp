@@ -1,7 +1,8 @@
 # pragma once
 
-# include <Common.hpp>
-# include <Math.hpp>
+# include <SDL2/SDL.h>
+# include <SDL2/SDL_image.h>
+# include <math.hpp>
 
 class Entity
 {

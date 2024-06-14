@@ -1,5 +1,5 @@
-# include <Game.hpp>
-# include <Entity.hpp>
+# include <game.hpp>
+# include <entity.hpp>
 
 # define SCREEN_WIDTH 800
 # define SCREEN_HEIGHT 450
@@ -40,16 +40,6 @@ int main(int argc, char* argv[])
         SCREEN_WIDTH, SCREEN_HEIGHT,
         SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC    
     );
-
-    // int w = SCREEN_WIDTH / 10;
-    // int h = SCREEN_HEIGHT / 10;
-    // for (int row = 0; row < 10; row++)
-    // {
-    //     for (int col = 0; col < 10; col++)
-    //     {
-    //         game.AddEntity(col * w, row * h, "assets/img/bup.jpg");
-    //     }
-    // }
 
     game.AddEntity(0, 0, "assets/img/bup.jpg");
     

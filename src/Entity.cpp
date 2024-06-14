@@ -1,4 +1,4 @@
-# include <Entity.hpp>
+# include <entity.hpp>
 
 Entity::Entity(SDL_Renderer* renderer, float x, float y, const char filepath[])
 : _position({ x, y })

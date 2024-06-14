@@ -1,7 +1,7 @@
 # pragma once
 
-# include <Common.hpp>
-# include <Entity.hpp>
+# include <vector>
+# include <entity.hpp>
 
 class Game
 {
