@@ -24,10 +24,10 @@ void Entity::Render(SDL_Renderer* renderer)
 
 void Entity::Update(const Uint8* keystate)
 {
-    if (keystate[SDL_SCANCODE_UP])    { _position += { 0.0f, -5.0f }; }
-    if (keystate[SDL_SCANCODE_LEFT])  { _position += { -5.0f, 0.0f }; }
-    if (keystate[SDL_SCANCODE_DOWN])  { _position += { 0.0f, 5.0f }; }
-    if (keystate[SDL_SCANCODE_RIGHT]) { _position += { 5.0f, 0.0f }; }
+    if (keystate[SDL_SCANCODE_W]) { _position += { 0.0f, -5.0f }; }
+    if (keystate[SDL_SCANCODE_A]) { _position += { -5.0f, 0.0f }; }
+    if (keystate[SDL_SCANCODE_S]) { _position += { 0.0f, 5.0f }; }
+    if (keystate[SDL_SCANCODE_D]) { _position += { 5.0f, 0.0f }; }
 
     CheckBounds();
 }
