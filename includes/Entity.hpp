@@ -13,6 +13,7 @@ public:
     void Render(SDL_Renderer* renderer);
     void Update(const Uint8* keystate);
     void CheckBounds();
+
     Vector2f &GetPosition();
     SDL_Texture* GetTexture();
     SDL_Rect GetCurrentFrame();
@@ -20,8 +21,9 @@ public:
 private:
     Vector2f _position;
     Vector2f _velocity;
-    Vector2f _gravity = { 0.0f, 3.0f };
+    Vector2f _gravity = { 0.0f, 2.0f };
     SDL_Rect _sourceFrame;
     SDL_Texture* _texture;
-    bool _grounded;
+    bool _isFacingRight;
+    bool _isGrounded;
 };

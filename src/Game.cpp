@@ -53,6 +53,8 @@ Game::~Game()
 
 void Game::Run()
 {
+    Uint32 frameBegin = SDL_GetTicks();
+    
     SDL_Event event;
     while (SDL_PollEvent(&event))
     {
@@ -78,6 +80,17 @@ void Game::Run()
     Clear();
     RenderAll();
     Display();
+
+    // Uint32 frameTime = SDL_GetTicks() - frameBegin;
+    // if (frameTime < 1000 / 60) { SDL_Delay(1000 / 60 - frameTime); }
+
+    fps += 1000.0f / (float) (SDL_GetTicks() - frameBegin);
+    if (frameCount++ % 30 == 0)
+    {
+        std::string title = "SDL2 Window     FPS: " + std::to_string(fps / 30.0f);
+        SDL_SetWindowTitle(_window, title.c_str());
+        fps = 0.0f;
+    }
 }
 
 void Game::RenderAll()

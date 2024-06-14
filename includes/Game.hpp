@@ -1,5 +1,6 @@
 # pragma once
 
+# include <string>
 # include <vector>
 # include <entity.hpp>
 
@@ -21,5 +22,7 @@ private:
     std::vector<Entity> _entities;
     SDL_Window* _window;
     SDL_Renderer* _renderer;
+    float fps = 0.0f;
+    int frameCount;
     bool _isRunning = true;
 };

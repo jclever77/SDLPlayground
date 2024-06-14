@@ -24,13 +24,25 @@ void Entity::Render(SDL_Renderer* renderer)
 
 void Entity::Update(const Uint8* keystate)
 {
-    if (keystate[SDL_SCANCODE_A]) { _velocity.x = -5.0f; }
-    if (keystate[SDL_SCANCODE_D]) { _velocity.x = 5.0f; }
-    if (!keystate[SDL_SCANCODE_A] && !keystate[SDL_SCANCODE_D]) { _velocity.x = 0.0f; }
-    if (_grounded && keystate[SDL_SCANCODE_SPACE])
+    if (keystate[SDL_SCANCODE_A])
     {
-        _velocity += { 0.0f, -40.0f };
-        _grounded = false;
+        _velocity.x = std::max(_velocity.x - 2.0f, -8.0f);
+        _isFacingRight = false;
+    }
+    if (keystate[SDL_SCANCODE_D])
+    {
+        _velocity.x = std::min(_velocity.x + 2.0f, 8.0f);
+        _isFacingRight = true;
+    }
+    if (!keystate[SDL_SCANCODE_A] && !keystate[SDL_SCANCODE_D] && _velocity.x != 0.0f)
+    {
+        if (_isFacingRight) { _velocity.x = std::max(_velocity.x - 2.0f, 0.0f); }
+        else                { _velocity.x = std::min(_velocity.x + 2.0f, 0.0f); }
+    }
+    if (_isGrounded && keystate[SDL_SCANCODE_SPACE])
+    {
+        _velocity += { 0.0f, -25.0f };
+        _isGrounded = false;
     }
 
     _velocity += _gravity;
@@ -46,21 +58,24 @@ void Entity::CheckBounds()
     if (_position.x < 0.0f)
     {
         _position.x = 0.0f;
+        _velocity.x = 0.0f;
     }
     else if (_position.x + w > 800.0f)
     {
         _position.x = 800.0f - w;
+        _velocity.x = 0.0f;
     }
 
     if (_position.y < 0.0f)
     {
         _position.y = 0.0f;
+        _velocity.y = 0.0f;
     }
     else if (_position.y + h > 450.0f)
     {
         _position.y = 450.0f - h;
         _velocity.y = 0.0f;
-        _grounded = true;
+        _isGrounded = true;
     }
 }
 
