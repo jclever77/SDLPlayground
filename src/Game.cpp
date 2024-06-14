@@ -1,7 +1,6 @@
 # include <Game.hpp>
 
 Game::Game(const char title[], int w, int h, Uint32 renderFlags)
-: _isRunning(true)
 {
     if (SDL_Init(SDL_INIT_EVERYTHING) < 0)
     {
@@ -52,37 +51,73 @@ Game::~Game()
     SDL_Quit();
 }
 
-SDL_Texture* Game::LoadTexture(const char filepath[])
+void Game::Run()
 {
-    SDL_Texture* texture = IMG_LoadTexture(_renderer, filepath);
-
-    if (!texture)
+    SDL_Event event;
+    while (SDL_PollEvent(&event))
     {
-        std::cout << "'LoadTexture' failed. ERROR: " << SDL_GetError() << std::endl;
+        switch (event.type)
+        {
+            case SDL_QUIT:
+                _isRunning = false;
+                break;
+
+            case SDL_MOUSEBUTTONDOWN:
+                switch (event.button.button)
+                {
+                    case SDL_BUTTON_LEFT:
+                        std::cout << "Left-mouse click" << std::endl;
+                        break;
+                    case SDL_BUTTON_RIGHT:
+                        std::cout << "Right-mouse click" << std::endl;
+                        break;
+                    case SDL_BUTTON_MIDDLE:
+                        std::cout << "Middle-mouse click" << std::endl;
+                        break;
+                }
+                break;
+
+            case SDL_KEYDOWN:
+                switch (event.key.keysym.sym)
+                {
+                    case SDLK_w:
+                        _entities[0].Update({ 0.0f, -3.0f });
+                        break;
+                    case SDLK_a:
+                        _entities[0].Update({ -3.0f, 0.0f });
+                        break;
+                    case SDLK_s:
+                        _entities[0].Update({ 0.0f, 3.0f });
+                        break;
+                    case SDLK_d:
+                        _entities[0].GetVelocity() = { 3.0f, 0.0f };
+                        break;
+                }
+                break;
+        }
     }
 
-    return texture;
+    for (auto &entity : _entities)
+    {
+        entity.GetPosition() += entity.GetVelocity();
+    }
+
+    Clear();
+    RenderAll();
+    Display();
 }
 
 void Game::RenderAll()
 {
-    for (auto entity : _entities)
+    for (auto &entity : _entities)
     {
-        SDL_Rect source = entity.GetCurrentFrame();
-        SDL_Rect dest = {
-            (int) entity.GetPosition().x,
-            (int) entity.GetPosition().y,
-            source.w / 10,
-            source.h / 10
-        };
-
-        SDL_RenderCopy(_renderer, entity.GetTexture(), &source, &dest);
+        entity.Render(_renderer);
     }
 }
 
-void Game::AddEntity(float x, float y, SDL_Texture* texture)
+void Game::AddEntity(float x, float y, const char filepath[])
 {
-    _entities.push_back({ x, y, texture });
+    _entities.push_back({_renderer, x, y, filepath });
 }
 
 void Game::Clear() { SDL_RenderClear(_renderer); }
@@ -90,5 +125,3 @@ void Game::Clear() { SDL_RenderClear(_renderer); }
 void Game::Display() { SDL_RenderPresent(_renderer); }
 
 bool Game::IsRunning() { return _isRunning; };
-
-void Game::stopGame() { _isRunning = false; }

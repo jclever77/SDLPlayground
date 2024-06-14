@@ -41,64 +41,21 @@ int main(int argc, char* argv[])
         SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC    
     );
 
-    SDL_Texture* texture = game.LoadTexture("assets/img/bup.jpg");
-    int w = SCREEN_WIDTH / 10;
-    int h = SCREEN_HEIGHT / 10;
-    for (int row = 0; row < 10; row++)
-    {
-        for (int col = 0; col < 10; col++)
-        {
-            game.AddEntity(col * w, row * h, texture);
-        }
-    }
+    // int w = SCREEN_WIDTH / 10;
+    // int h = SCREEN_HEIGHT / 10;
+    // for (int row = 0; row < 10; row++)
+    // {
+    //     for (int col = 0; col < 10; col++)
+    //     {
+    //         game.AddEntity(col * w, row * h, "assets/img/bup.jpg");
+    //     }
+    // }
+
+    game.AddEntity(0, 0, "assets/img/bup.jpg");
     
-    SDL_Event event;
     while (game.IsRunning())
     {
-        while (SDL_PollEvent(&event))
-        {
-            switch (event.type)
-            {
-                case SDL_QUIT:
-                    game.stopGame();
-                    break;
-
-                case SDL_MOUSEBUTTONDOWN:
-                    switch (event.button.button)
-                    {
-                        case SDL_BUTTON_LEFT:
-                            std::cout << "Left-mouse click" << std::endl;
-                            break;
-                        case SDL_BUTTON_RIGHT:
-                            std::cout << "Right-mouse click" << std::endl;
-                            break;
-                        case SDL_BUTTON_MIDDLE:
-                            std::cout << "Middle-mouse click" << std::endl;
-                            break;
-                    }
-
-                case SDL_KEYDOWN:
-                    switch (event.key.keysym.sym)
-                    {
-                        case SDLK_w:
-                            std::cout << "wuh" << std::endl;
-                            break;
-                        case SDLK_a:
-                            std::cout << "auh" << std::endl;
-                            break;
-                        case SDLK_s:
-                            std::cout << "suh" << std::endl;
-                            break;
-                        case SDLK_d:
-                            std::cout << "duh" << std::endl;
-                            break;
-                    }
-            }
-        }
-
-        game.Clear();
-        game.RenderAll();
-        game.Display();
+        game.Run();
     }
 
     return 0;

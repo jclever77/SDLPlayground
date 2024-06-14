@@ -2,9 +2,8 @@
 
 # include <Common.hpp>
 
-class Vector2f
+struct Vector2f
 {
-public:
     float x, y;
 
     Vector2f();

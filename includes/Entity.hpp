@@ -6,13 +6,18 @@
 class Entity
 {
 public:
-    Entity(float x, float y, SDL_Texture* texture);
+    Entity(SDL_Renderer* renderer, float x, float y, const char filepath[]);
+
+    void Render(SDL_Renderer* renderer);
+    void Update(Vector2f updateAmount);
     Vector2f &GetPosition();
+    Vector2f &GetVelocity();
     SDL_Texture* GetTexture();
     SDL_Rect GetCurrentFrame();
 
 private:
     Vector2f _position;
-    SDL_Rect _currentFrame;
+    Vector2f _velocity;
+    SDL_Rect _sourceFrame;
     SDL_Texture* _texture;
 };
