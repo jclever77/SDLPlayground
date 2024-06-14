@@ -5,14 +5,6 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "SDL2 Launch",
-            "type": "cppvsdbg",
-            "request": "launch",
-            "program": "${workspaceRoot}/build/release/sdl.exe",
-            "cwd": "${workspaceRoot}",
-            "preLaunchTask": "build"
-        },
-        {
             "name": "SDL2 Debug",
             "type": "cppdbg",
             "request": "launch",

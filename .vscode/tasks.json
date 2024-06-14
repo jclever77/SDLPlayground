@@ -6,7 +6,10 @@
         {
             "label": "build",
             "type": "shell",
-            "command": "sh cmake/build.sh"
+            "command": "sh cmake/build.sh",
+            "problemMatcher": [
+                "$gcc"
+            ]
         },
         {
             "label": "build_debug",
