@@ -62,45 +62,18 @@ void Game::Run()
                 _isRunning = false;
                 break;
 
-            case SDL_MOUSEBUTTONDOWN:
-                switch (event.button.button)
-                {
-                    case SDL_BUTTON_LEFT:
-                        std::cout << "Left-mouse click" << std::endl;
-                        break;
-                    case SDL_BUTTON_RIGHT:
-                        std::cout << "Right-mouse click" << std::endl;
-                        break;
-                    case SDL_BUTTON_MIDDLE:
-                        std::cout << "Middle-mouse click" << std::endl;
-                        break;
-                }
-                break;
-
             case SDL_KEYDOWN:
                 switch (event.key.keysym.sym)
                 {
-                    case SDLK_w:
-                        _entities[0].Update({ 0.0f, -3.0f });
-                        break;
-                    case SDLK_a:
-                        _entities[0].Update({ -3.0f, 0.0f });
-                        break;
-                    case SDLK_s:
-                        _entities[0].Update({ 0.0f, 3.0f });
-                        break;
-                    case SDLK_d:
-                        _entities[0].GetVelocity() = { 3.0f, 0.0f };
+                    case SDLK_ESCAPE:
+                        _isRunning = false;
                         break;
                 }
                 break;
         }
     }
 
-    for (auto &entity : _entities)
-    {
-        entity.GetPosition() += entity.GetVelocity();
-    }
+    _entities[0].Update(SDL_GetKeyboardState(NULL));
 
     Clear();
     RenderAll();
